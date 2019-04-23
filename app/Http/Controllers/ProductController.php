@@ -143,6 +143,7 @@ class ProductController extends Controller
                 '.csrf_field().'
                 <input type="hidden" name="_method" value="DELETE"> 
                 <a href="'.url('/').'/admin/product/'.$product->id.'/edit " class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
+                <a href="'.route('pa.index',$product->id).'" class="btn btn-xs btn-secondary"><i class="fa fa-tag"></i></a>
                 <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> </button>
                 </form>';
             })

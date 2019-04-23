@@ -60,9 +60,11 @@ class ProductAttributeController extends Controller
      * @param  \App\ProductAttribute  $productAttribute
      * @return \Illuminate\Http\Response
      */
-    public function edit(ProductAttribute $productAttribute)
+    public function edit(ProductAttribute $pa)
     {
-        //
+        $pats=ProductAttributeType::all();
+        $product=Product::find($pa->pro_id);
+        return view('admin.product.attribute.edit',compact('product','pats','pa'));
     }
 
     /**
@@ -72,9 +74,10 @@ class ProductAttributeController extends Controller
      * @param  \App\ProductAttribute  $productAttribute
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProductAttribute $productAttribute)
+    public function update(Request $request, ProductAttribute $pa)
     {
-        //
+        $pa->update($request->all());
+        return back()->with('msg','product attribute updated!');
     }
 
     /**
@@ -83,9 +86,10 @@ class ProductAttributeController extends Controller
      * @param  \App\ProductAttribute  $productAttribute
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProductAttribute $productAttribute)
+    public function destroy(ProductAttribute $pa)
     {
-        //
+        $pa->delete();
+        return back()->with('msg','product attribute deleted!');
     }
 
     public function getPADT(Product $product)
@@ -98,9 +102,9 @@ class ProductAttributeController extends Controller
             ->where('pro_id',$product->id);
         return DataTables::of($pa)
             ->addColumn('action', function ($pa) {
-                return '<form method="post" action="">
+                return '<form method="post" action="'.route('pa.destroy',$pa->id).'">
                 '.csrf_field().'
-                <input type="hidden" name="_method" value="DELETE"> 
+                
                 <a href="'.url('/').'/admin/pa/'.$pa->id.'/edit " class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
                 <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> </button>
                 </form>';

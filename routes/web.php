@@ -31,4 +31,14 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function (){
     Route::get('getproductdt','ProductController@getProductDT')->name('getProductDT');
 
     Route::resource('pat','ProductAttributeTypeController');
+    Route::get('getpatdt','ProductAttributeTypeController@getPATDT')->name('getPATDT');
+
+    Route::get('pa/{product}','ProductAttributeController@index')->name('pa.index');
+    Route::get('pa/{product}/create','ProductAttributeController@create')->name('pa.create');
+    Route::get('pa/{pa}/edit','ProductAttributeController@edit')->name('pa.edit');
+    Route::post('pa','ProductAttributeController@store')->name('pa.store');
+    Route::post('pa/{pa}','ProductAttributeController@update')->name('pa.update');
+    Route::post('pa/{pa}/delete','ProductAttributeController@destroy')->name('pa.destroy');
+
+    Route::get('getpadt/{product}','ProductAttributeController@getPADT')->name('getPADT');
 });

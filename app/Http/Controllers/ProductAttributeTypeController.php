@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ProductAttributeType;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class ProductAttributeTypeController extends Controller
 {
@@ -60,9 +61,9 @@ class ProductAttributeTypeController extends Controller
      * @param  \App\ProductAttributeType  $productAttributeType
      * @return \Illuminate\Http\Response
      */
-    public function edit(ProductAttributeType $productAttributeType)
+    public function edit(ProductAttributeType $pat)
     {
-        //
+        return view('admin.productAttributeType.edit',compact('pat'));
     }
 
     /**
@@ -72,9 +73,10 @@ class ProductAttributeTypeController extends Controller
      * @param  \App\ProductAttributeType  $productAttributeType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProductAttributeType $productAttributeType)
+    public function update(Request $request, ProductAttributeType $pat)
     {
-        //
+        $pat->update($request->all());
+        return back()->with('msg','Product Attribute Type');
     }
 
     /**
@@ -83,8 +85,23 @@ class ProductAttributeTypeController extends Controller
      * @param  \App\ProductAttributeType  $productAttributeType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProductAttributeType $productAttributeType)
+    public function destroy(ProductAttributeType $pat)
     {
-        //
+        $pat->delete();
+        return back()->with('msg','Product Attribute Type Deleted');
+    }
+
+    public function getPATDT()
+    {
+        return DataTables::of(ProductAttributeType::query())
+            ->addColumn('action', function ($pat) {
+                return '<form method="post" action="'.route('pat.destroy',$pat->id).'">
+                '.csrf_field().'
+                <input type="hidden" name="_method" value="DELETE"> 
+                <a href="'.url('/').'/admin/pat/'.$pat->id.'/edit " class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
+                <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> </button>
+                </form>';
+            })
+            ->make(true);
     }
 }
