@@ -43,6 +43,7 @@ class ProductController extends Controller
         $form_input=$request->except('image');
         $request->validate([
             'pro_name' => 'required',
+            'pro_slug' => 'required|unique:products',
             'pro_code' => 'required',
             'pro_price' => 'required',
             'pro_info' => 'required',
@@ -53,7 +54,7 @@ class ProductController extends Controller
             $ext=$file->getClientOriginalExtension();
             $image_name=time().'_'.uniqid().'.'.$ext;
             Image::make($file)->save(public_path('assets/img/product/orginal/').$image_name);
-            $image = Image::make($file)->resize(200, 200);
+            $image = Image::make($file)->resize(300, 200);
             $image->save(public_path('assets/img/product/small/').$image_name);
             $form_input['image']=$image_name;
         }
@@ -96,6 +97,7 @@ class ProductController extends Controller
         $form_input=$request->except('image','_method','_token');
         $request->validate([
             'pro_name' => 'required',
+            'pro_slug' => 'required|unique:products,pro_slug,'.$product->id,
             'pro_code' => 'required',
             'pro_price' => 'required',
             'pro_info' => 'required',
@@ -107,7 +109,7 @@ class ProductController extends Controller
             $ext=$file->getClientOriginalExtension();
             $image_name=time().'_'.uniqid().'.'.$ext;
             Image::make($file)->save(public_path('assets/img/product/orginal/').$image_name);
-            $image = Image::make($file)->resize(200, 200);
+            $image = Image::make($file)->resize(300, 200);
             $image->save(public_path('assets/img/product/small/').$image_name);
             $form_input['image']=$image_name;
             $orginal_path=public_path('assets/img/product/orginal/').$currentImage;
@@ -142,8 +144,8 @@ class ProductController extends Controller
                 return '<form method="post" action="'.route('product.destroy',$product->id).'">
                 '.csrf_field().'
                 <input type="hidden" name="_method" value="DELETE"> 
-                <a href="'.url('/').'/admin/product/'.$product->id.'/edit " class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
                 <a href="'.route('pa.index',$product->id).'" class="btn btn-xs btn-secondary"><i class="fa fa-tag"></i></a>
+                <a href="'.url('/').'/admin/product/'.$product->id.'/edit " class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
                 <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> </button>
                 </form>';
             })

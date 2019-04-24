@@ -43,8 +43,8 @@
                 ajax: '{!! route('getPATDT') !!}',
                 columns: [
                     { data: 'id', name: 'id' },
-                    { data: 'name', name: 'name' },
-                    { data: 'label', name: 'label' },
+                    { data: 'pat_name', name: 'pat_name' },
+                    { data: 'pat_label', name: 'pat_label' },
                     {data: 'action', name: 'action', orderable: false, searchable: false}
                 ]
             });

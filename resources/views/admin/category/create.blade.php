@@ -46,14 +46,18 @@
                             @endif
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name">
+                                <input type="text" class="form-control" name="cat_name" id="cat_name" placeholder="Enter Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="cat_slug">Slug</label>
+                                <input type="text" class="form-control" name="cat_slug" id="cat_slug" placeholder="Enter Slug">
                             </div>
                             <div class="form-group">
                                 <label for="parent">Parent</label>
                                 <select class="form-control" name="parent_id">
                                     <option value="0">Select Category</option>
                                     @foreach($categories as $c)
-                                       <option value="{{$c->id}}">{{$c->name}}</option>
+                                       <option value="{{$c->id}}">{{$c->cat_name}}</option>
                                     @endforeach
                                 </select>
                             </div>

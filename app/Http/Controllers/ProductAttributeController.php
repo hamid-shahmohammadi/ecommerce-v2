@@ -96,7 +96,8 @@ class ProductAttributeController extends Controller
     {
         $pa=ProductAttribute::select([
             'product_attributes.id',
-            'product_attribute_types.name',
+            'product_attributes.pa_name',
+            'product_attribute_types.pat_name',
             'product_attributes.price',
         ])->leftJoin('product_attribute_types','product_attribute_types.id','=','product_attributes.pat_id')
             ->where('pro_id',$product->id);

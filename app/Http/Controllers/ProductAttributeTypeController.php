@@ -37,8 +37,8 @@ class ProductAttributeTypeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'label' => 'required',
+            'pat_name' => 'required',
+            'pat_label' => 'required',
         ]);
         ProductAttributeType::create($request->all());
         return back()->with('msg','Create Product Attribute Type Success');

@@ -46,8 +46,12 @@
                                 <div class="alert alert-info">{{Session::get('msg')}}</div>
                             @endif
                             <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" class="form-control" name="name" id="name" value="{{$category->name}}" placeholder="Enter Name">
+                                <label for="cat_name">Name</label>
+                                <input type="text" class="form-control" name="cat_name" id="cat_name" value="{{$category->cat_name}}" placeholder="Enter Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="cat_slug">Slug</label>
+                                <input type="text" class="form-control" name="cat_slug" id="cat_slug" value="{{$category->cat_slug}}" placeholder="Enter Slug">
                             </div>
                             <div class="form-group">
                                 <label for="parent">Parent</label>

@@ -46,39 +46,43 @@
                             @endif
                             <div class="form-group">
                                 <label for="name">Product Name</label>
-                                <input type="text" class="form-control" name="pro_name" id="pro_name" placeholder="Enter Name">
+                                <input type="text" class="form-control" name="pro_name" id="pro_name" placeholder="Enter Name" value="{{old('pro_name')}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Product Slug</label>
+                                <input type="text" class="form-control" name="pro_slug" id="pro_slug" placeholder="Enter Slug" value="{{old('pro_slug')}}">
                             </div>
                             <div class="form-group">
                                 <label for="name">Product Code</label>
-                                <input type="text" class="form-control" name="pro_code" id="pro_code" placeholder="Enter Product Code">
+                                <input type="text" class="form-control" name="pro_code" id="pro_code" placeholder="Enter Product Code" value="{{old('pro_code')}}">
                             </div>
                             <div class="form-group">
                                 <label for="name">Product Price</label>
-                                <input type="text" class="form-control" name="pro_price" id="pro_price" placeholder="Enter Product Price">
+                                <input type="text" class="form-control" name="pro_price" id="pro_price" placeholder="Enter Product Price" value="{{old('pro_price')}}">
                             </div>
                             <div class="form-group">
                                 <label for="name">Product Info</label>
-                                <textarea class="form-control" name="pro_info" id="pro_info" placeholder="Enter Product Info"></textarea>
+                                <textarea class="form-control" name="pro_info" id="pro_info" placeholder="Enter Product Info"> {{old('pro_info')}}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="name">Stock</label>
-                                <input type="number" class="form-control" name="stock" id="stock" placeholder="Enter Product stock">
+                                <input type="number" class="form-control" name="stock" id="stock" placeholder="Enter Product stock" value="{{old('stock')}}">
                             </div>
                             <div class="form-group">
                                 <label for="parent">Category</label>
                                 <select class="form-control" name="category_id">
                                     @foreach($categories as $c)
-                                       <option value="{{$c->id}}">{{$c->name}}</option>
+                                       <option value="{{$c->id}}">{{$c->cat_name}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="name">Image</label>
-                                <input type="file" class="form-control" name="image" id="image" >
+                                <input type="file" class="form-control-file" name="image" id="image" >
                             </div>
                             <div class="form-group">
                                 <label for="name">SPL Price</label>
-                                <input type="text" class="form-control" name="spl_price" id="spl_price" placeholder="Enter SPL Price">
+                                <input type="text" class="form-control" name="spl_price" id="spl_price" placeholder="Enter SPL Price" value="{{old('spl_price')}}">
                             </div>
 
                         </div>

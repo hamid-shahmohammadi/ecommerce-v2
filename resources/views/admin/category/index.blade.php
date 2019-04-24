@@ -43,7 +43,7 @@
                 ajax: '{!! route('getCategoryDT') !!}',
                 columns: [
                     { data: 'id', name: 'id' },
-                    { data: 'name', name: 'name' },
+                    { data: 'cat_name', name: 'cat_name' },
                     { data: 'parent_id', name: 'parent_id' },
                     {data: 'action', name: 'action', orderable: false, searchable: false}
                 ]

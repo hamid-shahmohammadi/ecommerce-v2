@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductAttributeType extends Model
 {
-    protected $fillable=['name','label'];
+    protected $fillable=['pat_name','pat_label'];
 }

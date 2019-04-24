@@ -25,6 +25,7 @@
             <thead>
             <tr>
                 <th>Id</th>
+                <th>Product Attribute Name</th>
                 <th>Product Attribute Type</th>
                 <th>price</th>
                 <th><i class="fa fa-cog"></i> </th>
@@ -44,10 +45,12 @@
                 ajax: '{!! route('getPADT',$product->id) !!}',
                 columns: [
                     { data: 'id', name: 'id' },
-                    { data: 'name', name: 'name' },
+                    { data: 'pa_name', name: 'pa_name' },
+                    { data: 'pat_name', name: 'pat_name' },
                     { data: 'price', name: 'price' },
                     {data: 'action', name: 'action', orderable: false, searchable: false}
-                ]
+                ],
+                searching: false
             });
         });
     </script>

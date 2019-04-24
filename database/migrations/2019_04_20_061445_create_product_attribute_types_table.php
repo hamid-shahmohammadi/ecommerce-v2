@@ -15,8 +15,8 @@ class CreateProductAttributeTypesTable extends Migration
     {
         Schema::create('product_attribute_types', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name',50);
-            $table->string('label',50);
+            $table->string('pat_name',50);
+            $table->string('pat_label',50);
             $table->timestamps();
         });
     }

@@ -11,13 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'front\HomeController@index')->name('home');
+Route::get('/product-details/{slug}', 'front\HomeController@productDetails')->name('product.details');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix'=>'admin','middleware'=>['auth','admin']],function (){
     Route::get('/',function (){

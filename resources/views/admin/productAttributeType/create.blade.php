@@ -45,12 +45,12 @@
                                 <div class="alert alert-info">{{Session::get('msg')}}</div>
                             @endif
                             <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name">
+                                <label for="pat_name">Name</label>
+                                <input type="text" class="form-control" name="pat_name" id="pat_name" placeholder="Enter Name">
                             </div>
                             <div class="form-group">
-                                <label for="name">Label</label>
-                                <input type="text" class="form-control" name="label" id="label" placeholder="Enter Label">
+                                <label for="pat_label">Label</label>
+                                <input type="text" class="form-control" name="pat_label" id="pat_label" placeholder="Enter Label">
                             </div>
                         </div>
                         <!-- /.card-body -->

@@ -50,6 +50,10 @@
                                 <input type="text" class="form-control" name="pro_name" id="pro_name" placeholder="Enter Name" value="{{$product->pro_name}}">
                             </div>
                             <div class="form-group">
+                                <label for="name">Product Slug</label>
+                                <input type="text" class="form-control" name="pro_slug" id="pro_slug" placeholder="Enter Slug" value="{{$product->pro_slug}}">
+                            </div>
+                            <div class="form-group">
                                 <label for="name">Product Code</label>
                                 <input type="text" class="form-control" name="pro_code" id="pro_code" placeholder="Enter Product Code" value="{{$product->pro_code}}">
                             </div>
@@ -70,16 +74,16 @@
                                 <select class="form-control" name="category_id">
                                     @foreach($categories as $c)
                                         @if($product->category_id==$c->id)
-                                            <option value="{{$c->id}}" selected>{{$c->name}}</option>
+                                            <option value="{{$c->id}}" selected>{{$c->cat_name}}</option>
                                         @else
-                                            <option value="{{$c->id}}">{{$c->name}}</option>
+                                            <option value="{{$c->id}}">{{$c->cat_name}}</option>
                                         @endif
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="name">Image</label>
-                                <input type="file" class="form-control" name="image" id="image" >
+                                <input type="file" class="form-control-file" name="image" id="image" >
                             </div>
                             <div class="form-group">
                                 <label for="name">SPL Price</label>

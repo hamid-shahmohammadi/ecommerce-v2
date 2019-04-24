@@ -16,9 +16,9 @@ class CategoryController extends Controller
         return view('admin.category.create',compact('categories'));
     }
     public function store(Request $request){
-        $request->except('_token');
         $request->validate([
-            'name' => 'required',
+            'cat_name' => 'required',
+            'cat_slug' => 'required|unique:categories',
         ]);
         Category::create($request->all());
         return back()->with('msg','Create Category Success');
@@ -46,6 +46,10 @@ class CategoryController extends Controller
 
     public function update(Category $category,Request $request)
     {
+        $request->validate([
+            'cat_name' => 'required',
+            'cat_slug' => 'required|unique:categories,cat_slug,'.$category->id
+        ]);
         $category->update($request->all());
         return back()->with('msg','update category success!');
     }

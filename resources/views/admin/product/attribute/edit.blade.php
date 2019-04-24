@@ -45,15 +45,19 @@
                             @if(Session::has('msg'))
                                 <div class="alert alert-info">{{Session::get('msg')}}</div>
                             @endif
+                            <div class="form-group">
+                                <label for="pa_name">Name</label>
+                                <input type="text" class="form-control" name="pa_name" id="pa_name" placeholder="Enter Name" value="{{$pa->pa_name}}">
+                            </div>
 
                             <div class="form-group">
                                 <label for="parent">Product Attribute Type</label>
                                 <select class="form-control" name="pat_id">
                                     @foreach($pats as $p)
                                         @if($pa->pat_id==$p->id)
-                                            <option value="{{$p->id}}" selected>{{$p->name}}</option>
+                                            <option value="{{$p->id}}" selected>{{$p->pat_name}}</option>
                                         @else
-                                            <option value="{{$p->id}}">{{$p->name}}</option>
+                                            <option value="{{$p->id}}">{{$p->pat_name}}</option>
                                         @endif
                                     @endforeach
                                 </select>
