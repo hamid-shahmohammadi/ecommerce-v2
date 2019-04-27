@@ -147,13 +147,13 @@
                                     <div class="btn-and-quantity-wrap">
                                         <div class="btn-and-quantity">
                                             <div class="spinner">
-                                                <span class="btn minus" data-id="2721888517"></span>
-                                                <input type="text" id="updates_2721888517" name="quantity" value="1" class="quantity-selector">
-                                                <input type="hidden" id="product_id" name="product_id" value="2721888517">
-                                                <span class="q">Qty.</span>
-                                                <span class="btn plus" data-id="2721888517"></span>
+                                                <span class="btn minus" @click="minsQty"></span>
+                                                {{--<input type="text" id="updates_2721888517" name="quantity" value="1" class="quantity-selector">--}}
+                                                {{--<input type="hidden" id="product_id" name="product_id" value="2721888517">--}}
+                                                <span class="q">@{{ qty }} Qty.</span>
+                                                <span class="btn plus" @click="plusQty"></span>
                                             </div>
-                                            <div id="AddToCart" quickbeam="add-to-cart">
+                                            <div id="AddToCart" quickbeam="add-to-cart" @click="addCart">
                                                 <span id="AddToCartText">Add to Cart</span>
                                             </div>
                                         </div>
@@ -196,9 +196,10 @@
         var product=@json($product);
         var pa_colors=@json($pa_colors);
     </script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="{{asset('/assets/js/axios.min.js')}}"></script>
+    <script src="{{asset('/assets/js/vue.min.js')}}"></script>
     <!-- development version, includes helpful console warnings -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    {{--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>--}}
     <!-- production version, optimized for size and speed -->
     {{--<script src="https://cdn.jsdelivr.net/npm/vue"></script>--}}
     <script src="{{asset('assets/front/js/app/productDetails.js')}}"></script>

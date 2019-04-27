@@ -21,4 +21,9 @@ class HomeController extends Controller
         $pa_colors=ProductAttribute::where('pro_id',$product->id)->where('pat_id',1)->get();
         return view('front.productDetails',compact('product','pa_colors'));
     }
+
+    public function getPa(ProductAttribute $pa)
+    {
+        return $pa;
+    }
 }

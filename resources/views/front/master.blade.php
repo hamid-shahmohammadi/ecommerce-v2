@@ -5,8 +5,10 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Ecom</title>
     <link rel="stylesheet" href="{{asset('/assets/front/css/album.css')}}">
+    <link rel="stylesheet" href="{{asset('/assets/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('/assets/front/css/bootstrap.min.css')}}">
     @yield('css')
 
@@ -15,7 +17,9 @@
 <header>
     @include('front.inc.nav')
 </header>
-
+@if(session('msg'))
+    <div class="alert alert-info">{{session('msg')}}</div>
+@endif
 @yield('content')
 
 <footer class="text-muted">

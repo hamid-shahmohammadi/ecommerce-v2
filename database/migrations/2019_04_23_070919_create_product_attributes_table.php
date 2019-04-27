@@ -19,6 +19,7 @@ class CreateProductAttributesTable extends Migration
             $table->integer('pro_id');
             $table->integer('pat_id');
             $table->string('price');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

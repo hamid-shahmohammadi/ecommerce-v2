@@ -27,9 +27,78 @@
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
             </li>
         </ul>
+        <ul class="navbar-nav mr-auto">
+            @if(Auth::check())
+            <li class="nav-item dropdown">
+
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{Auth::user()->name}}
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Profile</a>
+                    <a class="dropdown-item" href="#">Order</a>
+                    <div class="dropdown-divider"></div>
+
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                </div>
+            </li>
+            @if(session('cart'))
+                    <li class="nav-item dropdown" >
+
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i> {{count(session('cart'))}}
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="min-width: 20rem;">
+                            <table class="cart" style="font-size: 12px;" >
+                                <tr>
+                                    <th>Image</th>
+                                    <th>name</th>
+                                    <th>price</th>
+                                    <th>qty</th>
+                                    <th>total</th>
+                                    <th>remove</th>
+                                </tr>
+                            @foreach(session('cart') as $id=>$details)
+                                <tr>
+                                    <td><img width="40" height="40" class="img-thumbnail" src="{{url('/assets/img/product/small/'.$details['image'])}}" /></td>
+                                    <td>{{$details['name']}}</td>
+                                    <td>{{$details['price']}}</td>
+                                    <td>{{$details['qty']}}</td>
+                                    <td>{{$details['qty']*$details['price']}}</td>
+                                    <td><a href="{{route('front.removecart',$id)}}" class="btn btn-danger btn-sm">X</a> </td>
+                                </tr>
+                            @endforeach
+                            </table>
+                        </div>
+                    </li>
+
+            @endif
+            @else
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('login')}}">Login</a>
+            </li>
+            @endif
+
+
+        </ul>
         {{--<form class="form-inline my-2 my-lg-0">--}}
         {{--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">--}}
         {{--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>--}}
         {{--</form>--}}
     </div>
 </nav>
+<style>
+    table.cart td,th{
+        padding: 5px;
+    }
+</style>

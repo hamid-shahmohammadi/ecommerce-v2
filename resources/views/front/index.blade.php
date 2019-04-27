@@ -2,7 +2,7 @@
 
 @section('content')
 
-<main role="main">
+<main role="main" id="app">
 
     <section class="jumbotron text-center">
         <div class="container">
@@ -32,7 +32,7 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <a href="{{route('product.details',$p->pro_slug)}}" ><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    <button @click="addCart({{$p}})" type="button" class="btn btn-sm btn-outline-secondary">Add Cart</button>
                                 </div>
                                 <small class="text-muted">{{ $p->diffTime() }}</small>
                             </div>
@@ -48,4 +48,15 @@
 </main>
 
 @endsection
-
+@section('js')
+    <script>
+        const base_url='{{url('/')}}';
+    </script>
+    <script src="{{asset('/assets/js/axios.min.js')}}"></script>
+    <script src="{{asset('/assets/js/vue.min.js')}}"></script>
+    <!-- development version, includes helpful console warnings -->
+    {{--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>--}}
+    <!-- production version, optimized for size and speed -->
+    {{--<script src="https://cdn.jsdelivr.net/npm/vue"></script>--}}
+    <script src="{{asset('assets/front/js/app/home.js')}}"></script>
+@endsection

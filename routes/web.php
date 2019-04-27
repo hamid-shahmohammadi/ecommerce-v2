@@ -13,6 +13,9 @@
 
 Route::get('/', 'front\HomeController@index')->name('home');
 Route::get('/product-details/{slug}', 'front\HomeController@productDetails')->name('product.details');
+Route::get('/product-attribute/{pa}', 'front\HomeController@getPa')->name('front.getpa');
+Route::post('/addtocart', 'front\CartController@addCart')->name('front.addtocart');
+Route::get('/removecart/{product}', 'front\CartController@removeCart')->name('front.removecart');
 
 Auth::routes();
 

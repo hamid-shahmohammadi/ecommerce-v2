@@ -29,7 +29,7 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="{{route('pa.update',$pa->id)}}" role="form" method="POST">
+                    <form action="{{route('pa.update',$pa->id)}}" role="form" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="pro_id" value="{{$pa->pro_id}}">
                         @csrf
                         <div class="card-body">
@@ -65,6 +65,10 @@
                             <div class="form-group">
                                 <label for="name">Price</label>
                                 <input type="text" class="form-control" name="price" id="price" placeholder="Enter Price" value="{{$pa->price}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Image</label>
+                                <input type="file" class="form-control-file" name="image" id="image" >
                             </div>
 
                         </div>

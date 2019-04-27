@@ -765,7 +765,7 @@ header nav {
     left: 0;
     position: absolute;
     text-align: center;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     /*top: 31px;*/
     width: 100%;
     z-index: 1;
@@ -1778,6 +1778,7 @@ header #nav-icon {
 
 .product-detail #AddToCart:hover {
     background-color: #0084ff;
+    cursor: pointer;
 }
 
 .product-detail .spinner {

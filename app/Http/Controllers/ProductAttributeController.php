@@ -7,6 +7,7 @@ use App\ProductAttribute;
 use App\ProductAttributeType;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class ProductAttributeController extends Controller
 {
@@ -76,7 +77,29 @@ class ProductAttributeController extends Controller
      */
     public function update(Request $request, ProductAttribute $pa)
     {
-        $pa->update($request->all());
+        $form_input=$request->except('image');
+        $request->validate([
+            'pa_name' => 'required',
+        ]);
+        $currentImage=$pa->image;
+        if($request->has('image')){
+            $file=$request->file('image');
+            $ext=$file->getClientOriginalExtension();
+            $image_name=time().'_'.uniqid().'.'.$ext;
+            Image::make($file)->save(public_path('assets/img/product/orginal/').$image_name);
+            $image = Image::make($file)->resize(200, 200);
+            $image->save(public_path('assets/img/product/small/').$image_name);
+            $form_input['image']=$image_name;
+            $orginal_path=public_path('assets/img/product/orginal/').$currentImage;
+            if (file_exists($orginal_path)){
+                @unlink($orginal_path);
+            }
+            $small_path=public_path('assets/img/product/small/').$currentImage;
+            if (file_exists($small_path)){
+                @unlink($small_path);
+            }
+        }
+        $pa->update($form_input);
         return back()->with('msg','product attribute updated!');
     }
 
