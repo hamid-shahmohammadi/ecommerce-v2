@@ -51,6 +51,11 @@
                         </form>
                 </div>
             </li>
+            @else
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('login')}}">Login</a>
+                </li>
+            @endif
             @if(session('cart'))
                     <li class="nav-item dropdown" >
 
@@ -78,16 +83,16 @@
                                     <td><a href="{{route('front.removecart',$id)}}" class="btn btn-danger btn-sm">X</a> </td>
                                 </tr>
                             @endforeach
+                                <tr>
+                                    <td colspan="3"></td>
+                                    <td colspan="2"><a href="{{route('front.cart')}}" ><button class="btn btn-secondary btn-sm">View Cart</button></a></td>
+                                </tr>
                             </table>
                         </div>
                     </li>
 
             @endif
-            @else
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('login')}}">Login</a>
-            </li>
-            @endif
+
 
 
         </ul>

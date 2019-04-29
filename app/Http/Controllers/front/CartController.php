@@ -66,4 +66,31 @@ class CartController extends Controller
         }
         return back();
     }
+
+    public function cart()
+    {
+        return view('front.cart');
+    }
+
+    public function updateCart(Request $request)
+    {
+        if($request->id and $request->qty)
+        {
+            $cart = session()->get('cart');
+
+            $cart[$request->id]["qty"] = $request->qty;
+
+            session()->put('cart', $cart);
+
+            session()->flash('success', 'Cart updated successfully');
+        }
+        return $cart;
+    }
+
+    public function getCart()
+    {
+        if(session()->has('cart')){
+            return $cart = session()->get('cart');
+        }
+    }
 }

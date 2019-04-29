@@ -41,4 +41,8 @@ class User extends Authenticatable
     {
         return $this->type=='admin';
     }
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }
