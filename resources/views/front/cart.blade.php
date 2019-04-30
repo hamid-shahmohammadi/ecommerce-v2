@@ -91,6 +91,10 @@
             <label for="inputAddress">Address</label>
             <textarea class="form-control" id="address" name="address"></textarea>
         </div>
+
+        </div>
+        <div>
+            <hr/>
         <button type="submit" class="btn btn-primary">Checkout</button>
         </div>
     </form>

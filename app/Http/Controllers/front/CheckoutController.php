@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
-    public function payment()
+    public function payment(Address $address)
     {
         if(Auth::check()){
             $user_id=Auth::user()->id;
-            $address=Address::where('user_id',$user_id)->first();
+            $address=Address::find($address->id);
             return view('front.payment',compact('address'));
         }
         return redirect('login');
@@ -36,6 +36,6 @@ class CheckoutController extends Controller
         }
 
         Order::createOrder($address_id);
-        return redirect('payment');
+        return redirect('payment/'.$address_id);
     }
 }
