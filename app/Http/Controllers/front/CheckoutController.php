@@ -10,23 +10,32 @@ use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
-    public function index()
+    public function payment()
     {
         if(Auth::check()){
-            return view('front.checkout');
+            $user_id=Auth::user()->id;
+            $address=Address::where('user_id',$user_id)->first();
+            return view('front.payment',compact('address'));
         }
         return redirect('login');
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-        ]);
-        Address::create($request->all());
-        Order::createOrder();
+        if ($request->has('new')){
+            $request->validate([
+                'first_name' => 'required',
+                'last_name' => 'required',
+                'email' => 'required',
+                'phone' => 'required',
+            ]);
+            $address=Address::create($request->all());
+            $address_id=$address->id;
+        }elseif($request->has('address_id')){
+            $address_id=$request->input('address_id');
+        }
+
+        Order::createOrder($address_id);
+        return redirect('payment');
     }
 }

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\front;
 
+use App\Address;
 use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -69,7 +71,8 @@ class CartController extends Controller
 
     public function cart()
     {
-        return view('front.cart');
+        $addresses=Address::where('user_id',Auth::user()->id)->get();
+        return view('front.cart',compact('addresses'));
     }
 
     public function updateCart(Request $request)

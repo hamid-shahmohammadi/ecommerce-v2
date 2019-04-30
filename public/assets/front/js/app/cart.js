@@ -3,12 +3,17 @@ var app = new Vue({
     data: {
         message: 'Hello Vue!',
         showTotal:true,
-        carts:{}
+        carts:{},
+        showAddress:false,
+        newAddress:null
     },
     created(){
         this.getcart();
     },
     methods:{
+        showNewAddress(){
+            this.showAddress=this.newAddress;
+        },
         showImage(img){
             return base_url+'/assets/img/product/small/'+img;
         },

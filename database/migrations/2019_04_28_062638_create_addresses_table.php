@@ -23,6 +23,7 @@ class CreateAddressesTable extends Migration
             $table->string('country')->nullable();
             $table->string('phone');
             $table->string('company')->nullable();
+            $table->string('address')->nullable();
             $table->integer('user_id');
             $table->timestamps();
         });

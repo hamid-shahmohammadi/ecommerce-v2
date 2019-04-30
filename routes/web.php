@@ -16,16 +16,17 @@ Route::get('/product-details/{slug}', 'front\HomeController@productDetails')->na
 Route::get('/product-attribute/{pa}', 'front\HomeController@getPa')->name('front.getpa');
 Route::post('/addtocart', 'front\CartController@addCart')->name('front.addtocart');
 Route::get('/removecart/{product}', 'front\CartController@removeCart')->name('front.removecart');
-Route::get('/cart', 'front\CartController@cart')->name('front.cart');
-Route::post('/updatecart', 'front\CartController@updateCart')->name('front.updatecart');
-Route::get('/getcart', 'front\CartController@getCart')->name('front.getcart');
+
 
 
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware(['auth'])->group(function (){
-    Route::get('/checkout', 'front\CheckoutController@index')->name('checkout');
+    Route::get('/cart', 'front\CartController@cart')->name('front.cart');
+    Route::post('/updatecart', 'front\CartController@updateCart')->name('front.updatecart');
+    Route::get('/getcart', 'front\CartController@getCart')->name('front.getcart');
+    Route::get('/payment', 'front\CheckoutController@payment')->name('payment');
     Route::post('/checkout/store', 'front\CheckoutController@store')->name('checkout.store');
 });
 
