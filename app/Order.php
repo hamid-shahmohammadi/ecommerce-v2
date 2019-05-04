@@ -26,5 +26,6 @@ class Order extends Model
         foreach ($carts as $id=>$cart) {
             $order->products()->attach($id, ['qty' => $cart['qty'], 'tax' => 0, 'total' => $cart['price']*$cart['qty']]);
         }
+        return $order;
     }
 }

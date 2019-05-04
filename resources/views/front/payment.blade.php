@@ -32,9 +32,12 @@
         <p>
             {{$address->address}}
         </p>
-        <form>
+        <form method="post" action="{{route('payment.send')}}">
+            @csrf
+            <input type="hidden" name="amount" value="{{$total}}">
+            <input type="hidden" name="order_id" value="{{$order_id}}">
             <div class="m-3">{{$total}}</div>
-            <button class="btn btn-primary">Payment</button>
+            <button type="submit" class="btn btn-primary">Payment</button>
         </form>
     </div>
 </div>

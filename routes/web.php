@@ -26,7 +26,10 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/cart', 'front\CartController@cart')->name('front.cart');
     Route::post('/updatecart', 'front\CartController@updateCart')->name('front.updatecart');
     Route::get('/getcart', 'front\CartController@getCart')->name('front.getcart');
-    Route::get('/payment/{address}', 'front\CheckoutController@payment')->name('payment');
+    Route::get('/payment/{address}/order/{order}', 'front\CheckoutController@payment')->name('payment');
+    Route::get('/paymentverify', 'front\CheckoutController@paymentVerify')->name('payment.verify');
+
+    Route::post('/payment/send', 'front\CheckoutController@paymentSend')->name('payment.send');
     Route::post('/checkout/store', 'front\CheckoutController@store')->name('checkout.store');
 });
 
